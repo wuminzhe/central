@@ -18,13 +18,14 @@
   (GET  "/login"     [] handlers/login-form-handler)
   (POST "/login"     [] handlers/login-submit-handler))
 
+(defn user-info-handler [req]
+  {:status 200
+   :body (::ctx/user req)})
 
 (defroutes restricted-routes
   (GET "/user/info" [] user-info-handler))
 
-(defn user-info-handler [req]
-  {:status 200
-   :body (::ctx/user req)})
+
 
 (def app
  (wrap-defaults
